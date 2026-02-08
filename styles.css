@@ -480,6 +480,18 @@ footer {
     }
 }
 
+.c2 {
+    bottom: 20%;
+    left: 10%;
+    animation: float 5s ease-in-out infinite 1s;
+}
+
+.c3 {
+    top: 40%;
+    right: 0%;
+    animation: float 4.5s ease-in-out infinite 0.5s;
+}
+
 /* Media Queries */
 @media (max-width: 900px) {
     .hero-content {
@@ -492,8 +504,39 @@ footer {
     }
 
     .hero-visual {
+        height: auto;
+        min-height: 400px;
+        /* More space for cards */
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+        /* Stack them with gap */
+    }
+
+    /* Reset absolute positioning for mobile */
+    .c1,
+    .c2,
+    .c3 {
+        position: static;
+        /* Stack normally */
+        animation: float 4s ease-in-out infinite;
+        transform: none;
+        /* Reset individual transforms if needed */
+        margin: 0 auto;
+        /* Center them */
+        width: 80%;
+        /* Good width */
+        max-width: 300px;
+    }
+
+    .circle-bg {
+        width: 300px;
         height: 300px;
-        margin-top: 2rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .footer-content {
@@ -538,10 +581,26 @@ footer {
     .mobile-toggle {
         display: block;
         color: var(--dark-bg);
+        font-size: 1.8rem;
+        cursor: pointer;
     }
 
     .hero-text h1 {
         font-size: 3rem;
+    }
+
+    .hero-btns {
+        display: flex;
+        flex-direction: column;
+        /* Stack buttons on mobile */
+        gap: 1rem;
+        padding: 0 2rem;
+        /* Add side padding */
+    }
+
+    .btn-secondary {
+        margin-left: 0;
+        /* Remove left margin for stacked layout */
     }
 
     .section {
@@ -578,6 +637,8 @@ footer {
     padding: 3rem 0;
     margin-top: 2rem;
     width: 100%;
+    grid-column: 1 / -1;
+    /* Spans full width of the grid */
     animation: slideDown 0.4s ease-out;
 }
 

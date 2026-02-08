@@ -135,13 +135,37 @@ document.addEventListener('DOMContentLoaded', () => {
         detailImg.src = imageSrc;
 
         // --- Move Section to Active Grid ---
-        // Find whichever container holds this card
         const activeContainer = card.closest('.container');
         if (activeContainer) {
             const grid = activeContainer.querySelector('.product-grid');
-            if (grid && grid.parentNode) {
-                // Move the Details View element to be right after the product grid
-                grid.parentNode.insertBefore(detailsSection, grid.nextSibling);
+            if (grid) {
+                // Logic to insert AFTER the current row
+                const cards = Array.from(grid.querySelectorAll('.product-card'));
+                const cardIndex = cards.indexOf(card);
+
+                // Find the last card in the *current* row
+                // We assume cards are in DOM order. We check offsets to see where the row breaks.
+                let insertAfterCard = card;
+
+                // Get the top offset of the clicked card's row
+                const rowTop = card.offsetTop;
+
+                for (let i = cardIndex; i < cards.length; i++) {
+                    const current = cards[i];
+                    // If we find a card that is on a NEW row (lower down), we stop.
+                    // The previous card was the last one in our row.
+                    if (current.offsetTop > rowTop) {
+                        break;
+                    }
+                    insertAfterCard = current;
+                }
+
+                // Insert the details section after the last card of this row
+                if (insertAfterCard.nextSibling) {
+                    grid.insertBefore(detailsSection, insertAfterCard.nextSibling);
+                } else {
+                    grid.appendChild(detailsSection);
+                }
             }
         }
 
