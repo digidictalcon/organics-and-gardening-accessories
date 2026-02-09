@@ -240,8 +240,15 @@ body.show-hindi .lang-hi {
 .hero-text p {
     font-size: 1.1rem;
     color: var(--text-light);
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
     max-width: 500px;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
 }
 
 .delivery-note {
@@ -553,17 +560,48 @@ footer {
     padding-left: 5px;
 }
 
-.footer-contact p {
+.footer-contact h4 {
+    margin-bottom: 1.5rem;
+}
+
+.footer-addr {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
     color: var(--gray-200);
-    margin-bottom: 0.8rem;
+}
+
+.footer-addr i {
+    margin-top: 0.2rem;
+}
+
+.footer-phones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-phones p {
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    margin: 0;
+    color: var(--gray-200);
+    white-space: nowrap;
+    flex-wrap: nowrap;
 }
+
+.footer-phones p a {
+    flex-shrink: 0;
+}
+
 
 .footer-contact a {
     color: var(--gray-100);
     transition: color 0.2s;
+    white-space: nowrap;
 }
 
 .footer-contact a:hover {
@@ -655,7 +693,8 @@ footer {
     }
 
     .hero-text p {
-        margin: 0 auto 1.5rem;
+        margin: 0 auto 2rem;
+        /* Increased bottom margin */
         font-size: 1rem;
     }
 
@@ -664,8 +703,11 @@ footer {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.8rem;
+        gap: 1rem;
+        /* Increased gap */
         padding: 0;
+        margin-top: 1.5rem;
+        /* Added/Increased margin-top */
     }
 
     .btn-primary,
@@ -722,7 +764,9 @@ footer {
         margin: 0 auto;
     }
 
-    .footer-contact p {
+    .footer-contact p,
+    .footer-addr,
+    .footer-phones p {
         justify-content: center;
     }
 
