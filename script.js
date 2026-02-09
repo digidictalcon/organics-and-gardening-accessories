@@ -1,19 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Header Scroll Effect
+    /* --- 1. Navbar Scroll Behavior --- */
     const navbar = document.querySelector('.navbar');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.9)';
-            navbar.style.boxShadow = 'none';
+            navbar.classList.remove('scrolled');
         }
     });
 
-    // Mobile Menu Toggle
+    /* --- 2. Mobile Menu Toggle --- */
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -21,126 +19,82 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
 
-            // Animation for hamburger icon could be added here if needed
             const icon = mobileToggle.querySelector('i');
             if (navLinks.classList.contains('active')) {
-                icon.classList.remove('ri-menu-3-line');
-                icon.classList.add('ri-close-line');
+                icon.classList.replace('ri-menu-3-line', 'ri-close-line');
             } else {
-                icon.classList.remove('ri-close-line');
-                icon.classList.add('ri-menu-3-line');
+                icon.classList.replace('ri-close-line', 'ri-menu-3-line');
             }
         });
     }
 
-    // Intersection Observer for Scroll Animations
+    /* --- 3. Scroll Animations (Intersection Observer) --- */
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                revealObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Animate Product Cards on Scroll
+    // Initialize animation for product cards
     const productCards = document.querySelectorAll('.product-card');
-
     productCards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'all 0.6s ease-out';
         card.style.transitionDelay = `${index * 100}ms`; // Stagger effect
-
-        observer.observe(card);
-
-        card.addEventListener('transitionend', () => {
-            if (card.classList.contains('visible')) {
-                card.style.transform = 'none'; // Allow hover effects to work properly after animation
-                card.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; // Reset for hover
-                card.style.transitionDelay = '0s';
-            }
-        });
+        revealObserver.observe(card);
     });
 
-    // Custom visibility logic for observed elements
-    // This part bridges the gap between the CSS transition setup and the observer class add
-    const addVisibleClass = () => {
-        const visibleCards = document.querySelectorAll('.product-card.visible');
-        visibleCards.forEach(card => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        });
-    };
-
-    // Enhance the observer callback to trigger the style change
-    const improvedObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Apply inline styles for the "enter" animation
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                improvedObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    productCards.forEach(card => {
-        improvedObserver.observe(card);
-    });
-
-    // Smooth Scroll for Anchors
+    /* --- 4. Smooth Anchor Scrolling --- */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            if (this.getAttribute('href') === '#') return;
+
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
+
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                target.scrollIntoView({ behavior: 'smooth' });
+
                 // Close mobile menu if open
-                if (window.innerWidth <= 900 && navLinks && navLinks.classList.contains('active')) {
+                if (window.innerWidth <= 900 && navLinks?.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    if (mobileToggle) {
-                        const icon = mobileToggle.querySelector('i');
-                        if (icon) {
-                            icon.classList.remove('ri-close-line');
-                            icon.classList.add('ri-menu-3-line');
-                        }
+                    const icon = mobileToggle?.querySelector('i');
+                    if (icon) {
+                        icon.classList.replace('ri-close-line', 'ri-menu-3-line');
                     }
                 }
             }
         });
     });
 
-    /* --- Language Toggle Logic --- */
+    /* --- 5. Language Toggle Logic --- */
     const langToggleBtn = document.getElementById('lang-toggle');
     const body = document.body;
 
-    // Check local storage for preference
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang === 'hindi') {
+    const updateLangButtonText = () => {
+        if (langToggleBtn) {
+            langToggleBtn.textContent = body.classList.contains('show-hindi') ? 'English' : 'हिंदी';
+        }
+    };
+
+    // Initialize from local storage
+    if (localStorage.getItem('lang') === 'hindi') {
         body.classList.add('show-hindi');
-        if (langToggleBtn) langToggleBtn.textContent = 'English';
+        updateLangButtonText();
     }
 
     if (langToggleBtn) {
         langToggleBtn.addEventListener('click', () => {
             body.classList.toggle('show-hindi');
-
-            if (body.classList.contains('show-hindi')) {
-                langToggleBtn.textContent = 'English';
-                localStorage.setItem('lang', 'hindi');
-            } else {
-                langToggleBtn.textContent = 'हिंदी';
-                localStorage.setItem('lang', 'english');
-            }
+            const isHindi = body.classList.contains('show-hindi');
+            localStorage.setItem('lang', isHindi ? 'hindi' : 'english');
+            updateLangButtonText();
         });
     }
 });

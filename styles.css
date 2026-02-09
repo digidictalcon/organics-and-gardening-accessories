@@ -127,7 +127,6 @@ body.show-hindi .lang-hi {
     color: var(--dark-bg);
     font-weight: 600;
     border-radius: 50px;
-    margin-left: 1rem;
 }
 
 .btn-secondary:hover {
@@ -146,6 +145,10 @@ body.show-hindi .lang-hi {
     transform: translateY(-2px);
 }
 
+.hero-btns .btn-whatsapp {
+    border: none;
+}
+
 /* Navbar */
 .navbar {
     position: fixed;
@@ -157,6 +160,11 @@ body.show-hindi .lang-hi {
     z-index: 1000;
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -338,15 +346,25 @@ body.show-hindi .lang-hi {
     overflow: hidden;
     height: 400px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: all 0.6s ease-out;
+    /* Match animation timing */
     border: none;
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    transform: translateY(30px);
 }
 
-.product-card:hover {
+.product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover transition reset after reveal */
+.product-card.visible:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
 }
 
 .product-card .card-img {
@@ -484,6 +502,14 @@ body.show-hindi .lang-hi {
     font-size: 0.9rem;
 }
 
+.location-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    /* Slightly reduced gap for "little left" feel */
+    align-items: center;
+}
+
 .contact-actions {
     display: flex;
     gap: 0.8rem;
@@ -506,6 +532,14 @@ body.show-hindi .lang-hi {
 .btn-small:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary.map-link-secondary {
+    margin-left: 0.5rem;
+}
+
+.location-map {
+    border: 0;
 }
 
 .btn-whatsapp {

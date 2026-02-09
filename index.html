@@ -45,9 +45,9 @@
                         <span class="lang-en">Contact Us</span>
                         <span class="lang-hi">संपर्क करें</span>
                     </a></li>
-                <li><button id="lang-toggle" class="lang-btn">हिंदी</button></li>
+                <li><button id="lang-toggle" class="lang-btn" aria-label="Toggle language">हिंदी</button></li>
             </ul>
-            <div class="mobile-toggle">
+            <div class="mobile-toggle" aria-label="Toggle mobile menu">
                 <i class="ri-menu-3-line"></i>
             </div>
         </div>
@@ -86,8 +86,7 @@
                         <span class="lang-en">View Accessories</span>
                         <span class="lang-hi">एक्सेसरीज देखें</span>
                     </a>
-                    <a href="https://wa.me/c/919826826115" target="_blank" class="btn-primary btn-whatsapp"
-                        style="border: none;">
+                    <a href="https://wa.me/c/919826826115" target="_blank" class="btn-primary btn-whatsapp">
                         <i class="ri-whatsapp-line"></i>
                         <span class="lang-en">View Products on WhatsApp</span>
                         <span class="lang-hi">उत्पाद कैटलॉग देखें</span>
@@ -119,14 +118,6 @@
                 </p>
             </div>
 
-            <!-- 
-                STATIC DATA CONFIGURATION:
-                To edit product details, simply change the values in the 'data-' attributes below.
-                No database is required. The website reads these directly.
-                - data-title: The name of the product
-                - data-desc: Description shown in the popup
-                - data-image: URL of the image shown in the popup
-            -->
             <div class="product-grid">
                 <!-- Product Card 1 -->
                 <article class="product-card">
@@ -146,7 +137,8 @@
                 </article>
 
                 <article class="product-card">
-                    <img src="assets/pexels-mart-production-8108209.jpg" alt="Organic Pulses" class="card-img">
+                    <img src="assets/pexels-mart-production-8108209.jpg" alt="Organic Pulses and Legumes"
+                        class="card-img">
                     <div class="card-content">
                         <h3>
                             <span class="lang-en">Pulses</span>
@@ -163,7 +155,7 @@
                 <!-- Product Card 3 -->
                 <article class="product-card">
                     <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Spices" class="card-img">
+                        alt="Selection of aromatic Hand-ground spices" class="card-img">
                     <div class="card-content">
                         <h3>
                             <span class="lang-en">Spices</span>
@@ -180,7 +172,7 @@
                 <!-- Product Card 4 -->
                 <article class="product-card">
                     <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                        alt="Food Oil" class="card-img">
+                        alt="Organic Cold-pressed food oils" class="card-img">
                     <div class="card-content">
                         <h3>
                             <span class="lang-en">Food Oil</span>
@@ -342,11 +334,12 @@
                         <p>110 Vishal Nagar<br>
                             Nr. Vaishnavi Petrol Pump Annapurna Road<br>
                             Indore 452009</p>
-                        <a href="https://maps.app.goo.gl/KuNmbtV72itD33bHA?g_st=ac" target="_blank"
-                            class="btn-primary mt-4">Get Directions <i class="ri-arrow-right-up-line"></i></a>
-                        <a href="https://maps.app.goo.gl/xgRh3PuppUh1JAYU8?g_st=ac" target="_blank"
-                            class="btn-secondary mt-4" style="margin-left: 0.5rem;">View us on Google Maps <i
-                                class="ri-map-pin-user-fill"></i></a>
+                        <div class="location-btns mt-4">
+                            <a href="https://maps.app.goo.gl/KuNmbtV72itD33bHA?g_st=ac" target="_blank"
+                                class="btn-primary">Get Directions <i class="ri-arrow-right-up-line"></i></a>
+                            <a href="https://maps.app.goo.gl/xgRh3PuppUh1JAYU8?g_st=ac" target="_blank"
+                                class="btn-secondary">View us on Google Maps <i class="ri-map-pin-user-fill"></i></a>
+                        </div>
                     </div>
                     <div class="info-card">
                         <div class="icon-box"><i class="ri-time-fill"></i></div>
@@ -372,7 +365,7 @@
                     <!-- Google Map Embed -->
                     <iframe
                         src="https://maps.google.com/maps?q=110%2C+Annapurna+Rd%2C+near+Vaishnavi+Petrol+Pump%2C+Vishal+Nagar%2C+Indore%2C+Madhya+Pradesh+452009&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        width="100%" height="400" allowfullscreen="" loading="lazy" class="location-map"></iframe>
                 </div>
             </div>
         </div>
