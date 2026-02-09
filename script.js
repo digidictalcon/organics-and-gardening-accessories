@@ -105,12 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth'
                 });
                 // Close mobile menu if open
-                if (window.innerWidth <= 900) {
+                if (window.innerWidth <= 900 && navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    const icon = mobileToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('ri-close-line');
-                        icon.classList.add('ri-menu-3-line');
+                    if (mobileToggle) {
+                        const icon = mobileToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('ri-close-line');
+                            icon.classList.add('ri-menu-3-line');
+                        }
                     }
                 }
             }
