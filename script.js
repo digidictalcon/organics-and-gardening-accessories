@@ -171,7 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add click listeners to cards
     document.querySelectorAll('.product-card').forEach(card => {
         card.style.cursor = 'pointer'; // Indicate clickable
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
+            // Prevent modal if clicking a link (e.g. contact buttons)
+            if (e.target.closest('a')) return;
+
             // Get title from card
             const titleEl = card.querySelector('h3 .lang-en');
             const title = titleEl ? titleEl.textContent.trim() : 'Product';
