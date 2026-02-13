@@ -211,6 +211,11 @@ body.show-hindi .lang-hi {
     color: var(--primary-dark);
 }
 
+/* Specific fix for contact button hover */
+.nav-links .btn-primary:hover {
+    color: var(--white);
+}
+
 .mobile-toggle {
     display: none;
     font-size: 1.5rem;
@@ -554,6 +559,16 @@ body.show-hindi .lang-hi {
     gap: 0.6rem;
     /* Slightly reduced gap for "little left" feel */
     align-items: center;
+}
+
+.location-btns .btn-secondary {
+    border-color: var(--dark-bg);
+    color: var(--dark-bg);
+}
+
+.location-btns .btn-secondary:hover {
+    background: var(--dark-bg);
+    color: var(--white);
 }
 
 .contact-actions {
