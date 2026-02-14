@@ -259,55 +259,21 @@ body.show-hindi .lang-hi {
     align-items: center;
 }
 
+
+/* --- Hero Refinements --- */
+
 .hero-text h1 {
-    font-size: 4.5rem;
-    line-height: 1.1;
-    margin-bottom: 1.2rem;
-    /* Reduced margin */
-    color: #DCEDC8;
-    /* Light Green */
+    font-size: 3.5rem;
+    /* Slightly smaller base to fit 2 lines better */
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--white);
     background: none;
     -webkit-text-fill-color: initial;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    font-weight: 700;
 }
 
-.hero-text p {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 2rem;
-    /* Reduced margin */
-    max-width: 700px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.hero-btns {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-    /* Reduced top margin */
-}
-
-.delivery-note {
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    /* Reduced margin */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    background: rgba(0, 0, 0, 0.4);
-    /* Glassmorphism dark */
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    display: inline-flex;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
 
 .badge {
     background: rgba(0, 0, 0, 0.6);
@@ -329,30 +295,179 @@ body.show-hindi .lang-hi {
     backdrop-filter: blur(5px);
 }
 
-.hero-visual {
+.highlight-text {
+    color: #ffd700;
+    /* Gold/Yellow for high contrast on dark bg */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
     position: relative;
-    height: 100%;
-    min-height: 400px;
+    text-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+}
+
+.hero-text p {
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+}
+
+.hero-text p b {
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-color);
+    text-underline-offset: 4px;
+}
+
+/* Hero Features (Icons) */
+.hero-features {
     display: flex;
+    gap: 2rem;
     justify-content: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    display: flex;
     align-items: center;
+    gap: 0.5rem;
+    color: var(--white);
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.95rem;
 }
 
-.hero-image {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: contain;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
-    border-radius: 20px;
-    transition: transform 0.5s ease;
+.feature-item i {
+    color: #4CAF50;
+    /* Green icon */
+    font-size: 1.2rem;
 }
 
-.hero-image:hover {
-    transform: translateY(-10px);
+/* Animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-text>* {
+    opacity: 0;
+    /* Initially hidden */
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+.hero-text .badge {
+    animation-delay: 0.2s;
+}
+
+.hero-text h1 {
+    animation-delay: 0.4s;
+}
+
+.hero-text p {
+    animation-delay: 0.6s;
+}
+
+.hero-text .hero-features {
+    animation-delay: 0.8s;
+}
+
+.hero-text .hero-btns {
+    animation-delay: 1s;
+}
+
+
+/* Floating WhatsApp Button (FAB) */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    /* remove hover line */
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.4);
+    color: #FFF;
+    /* ensure icon stays white */
+}
+
+.whatsapp-float i {
+    line-height: 60px;
+}
+
+
+.hero-btns {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 900px) {
+    .hero {
+        background-attachment: scroll;
+        /* Disable parallax on mobile */
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+        /* Adjusted for mobile */
+    }
+
+    .hero-features {
+        gap: 0.8rem;
+    }
+
+    .feature-item {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
 }
 
 /* Generic Sections */
+
 .section {
     padding: var(--section-padding);
 }
